@@ -1,5 +1,7 @@
 #!/bin/sh -xe
 
+export CI_OS="linux"
+
 if [ "$CI_ARCH" = "amd64" ]; then
   export CFLAGS=-m64 CXXFLAGS=-m64 LDFLAGS=-m64
 else
