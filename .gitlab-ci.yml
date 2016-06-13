@@ -1,0 +1,37 @@
+
+stages:
+  - build
+  - deploy
+
+build:linux:386:
+  stage: build
+  tags:
+    - linux
+  script:
+    - export CI_ARCH=386
+    - scripts/ci-build.sh
+  artifacts:
+    paths:
+      - binaries
+
+build:linux:amd64:
+  stage: build
+  tags:
+    - linux
+  script:
+    - export CI_ARCH=amd64
+    - scripts/ci-build.sh
+  artifacts:
+    paths:
+      - binaries
+
+deploy:
+  stage: deploy
+  tags:
+    - dropsy
+  script:
+    - scripts/ci-deploy.sh
+  dependencies:
+    - :build:linux:386
+    - :build:linux:amd64
+
