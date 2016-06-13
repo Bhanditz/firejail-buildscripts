@@ -19,6 +19,8 @@ git clone https://github.com/netblue30/firejail.git firejail-repo
 (cd firejail-repo && git checkout $CI_BUILD_REF_NAME && ./configure --disable-globalcfg && make -j3)
 mv firejail-repo/src/firejail/firejail .
 
+strip firejail
+file firejail
 7za a firejail.7z firejail
 
 # set up a file hierarchy that ibrew can consume, ie:
