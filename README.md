@@ -1,4 +1,4 @@
-# firejail-build
+# firejail-buildscripts
 
 This repository contains CI scripts to build [firejail][] from upstream
 and deploy it as an ibrew repo so that the [itch app][] can use it.
