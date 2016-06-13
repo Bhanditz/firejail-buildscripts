@@ -15,9 +15,9 @@ if [ -n "$CI_BUILD_TAG" ]; then
 fi
 export CI_VERSION=$CI_BUILD_REF_NAME
 
-git clone https://github.com/netblue30/firejail.git
-(cd firejail && git checkout $CI_BUILD_REF_NAME && ./configure --disable-globalcfg && make -j3)
-mv firejail/src/firejail/firejail .
+git clone https://github.com/netblue30/firejail.git firejail-repo
+(cd firejail-repo && git checkout $CI_BUILD_REF_NAME && ./configure --disable-globalcfg && make -j3)
+mv firejail-repo/src/firejail/firejail .
 
 7za a firejail.7z firejail
 
