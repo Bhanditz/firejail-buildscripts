@@ -15,8 +15,9 @@ if [ -n "$CI_BUILD_TAG" ]; then
 fi
 export CI_VERSION=$CI_BUILD_REF_NAME
 
-make
-mv src/firejail/firejail .
+git clone https://github.com/netblue30/firejail.git
+(cd firejail && git checkout $CI_BUILD_REF_NAME && ./configure --disable-globalcfg && make -j3)
+mv firejail/src/firejail/firejail .
 
 7za a firejail.7z firejail
 
@@ -28,7 +29,7 @@ mv src/firejail/firejail .
 #       - LATEST
 #       - v0.3.0
 #         - firejail.7z
-#         - firejail.exe
+#         - firejail
 #         - SHA1SUMS
 
 BINARIES_DIR="binaries/$CI_OS-$CI_ARCH"
